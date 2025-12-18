@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: mont;
+    src: url("./assets/fonts/MontserratAlternates-Regular.ttf");
+}
+
+@theme{
+ --font-mont:mont,"sans-serif";
+}
+@keyframes moveDiagonal {
+  0% {
+   transform: translate(100%,100%);
+  }
+  100% {
+   transform: translate(0%,0%);
+  }
+}
+
+.move-diagonal {
+  animation: moveDiagonal 2s ease-in-out infinite ;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 5h; } /* Adjust to number of characters */
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+.typing {
+  animation: typing 4s steps(5, end) forwards, blink 0.7s step-end infinite;
+}
+a.active hr{
+    display: block;
+border: 2px solid black;
+border-radius: 50%;
+}
