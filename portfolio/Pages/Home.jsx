@@ -26,8 +26,8 @@ const Home = () => {
   })
 
   return (
-    <>
-    <div className='bg-blue-400 h-[600px]  px-20 py-15 rounded-3xl   my-0 mx-auto   overflow-hidden  hidden sm:flex'>
+    <><div className='hidden'>
+    <div className='bg-blue-400 h-[600px]  px-20 py-15 rounded-3xl   my-0 mx-auto   overflow-hidden  hidden'>
       <div className='flex flex-col gap-10 w-1/2   '>
         <div className=''><p className='text-xl font-mont '>Hello I'm,</p></div>
         <div><p className='text-4xl mt-5 inline-block ' ref={rosRef} >Rosha</p><p className=' text-black  inline-block text-4xl mt-5 ' ref={textRef}>n</p> <p className='inline-block text-4xl mt-5'>Poudel</p></div>
@@ -58,7 +58,8 @@ const Home = () => {
           <button className='border-2-black rounded-xl h-50 w-50 bg-black text-white font-bold transition-transform duration-[50s] hover:transform-y-6 ease-out'>Contact Me</button>
         </div>
 
-</div>
+</div></div>
+<div></div>
     </>
   )
 }
