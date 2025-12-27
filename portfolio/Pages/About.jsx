@@ -1,31 +1,63 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const About = () => {
-  
-     const [Word,setWord] = useState('')
   return (
-    <>
-    <div className='lg:h-[80vh] h-[80vh] bg-red-400 lg:px-10 lg:py-10 rounded-3xl flex  lg:flex-row px-20 py-10'>
-      <div className='w-1/2'>
-        <div className='overflow-hidden border-2 rounded-full w-3/4'>
-      <img src="../src/Images/p_image.png"  className='transition-all duration-500 ease-in-out hover:scale-[1.2] transform hover:translate-y-8 ' alt="" />
-      </div>
-      </div>
-      <div className='flex flex-col w-3/4 gap-10'>
-      <div><p className='text-2xl font-bold  ' >About</p></div>
-<div>
-<p className='text-3xl font-extrabold '>Roshan Poudel</p></div>
-<div >
-<p className='text-[20px]'>As an experienced entrepreneur and business consultant, I’ve led companies as CEO in various industries. In the tours and travel sector, I helped businesses grow through smart strategies, key partnerships, and great customer service. As a CEO in consulting, I’ve guided businesses toward their goals. In IT, I’ve used technology to boost growth and improve efficiency. With a strong track record, I’m passionate about solving problems and driving success across different fields.</p></div>
-
-  <div className='flex gap-10 mt-5'>
-        <button className='border-2-blue-600 rounded-xl h-12 w-30  bg-blue-600 text-white font-bold relative hover:bottom-1 transition duration-3000'>Back Home</button>
-        <button className='border-2-black rounded-xl h-12 w-35 bg-black text-white font-bold  relative hover:bottom-1 transition duration-3000'>Download CV</button>
-        </div>
-      </div>
-      </div>
-  
-    </>
+    <section className="py-15 bg-code-surface text-code-text">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">
+                            <span className="text-code-comment">// </span>
+                            <span className="gradient-text">About Me</span>
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-12">
+                            <div className="space-y-6">
+                                <p className="text-lg leading-relaxed text-code-comment">
+                                    With  years of experience in computer engineering, I've dedicated my career 
+                                    to pushing the boundaries of what's possible with code. My journey began with 
+                                    curiosity about how computers work, and has evolved into a passion for creating 
+                                    systems that can scale and solve real-world problems.
+                                </p>
+                                <p className="text-lg leading-relaxed text-code-comment">
+                                    I specialize in Frontend Development architecture, machine learning algorithms, 
+                                    and performance optimization. When I'm not debugging code at 3 AM, you can 
+                                    find me contributing to open source projects or exploring the latest in 
+                                    quantum computing research.
+                                </p>
+                                <div className="space-y-4">
+                                    <h3 className="text-xl font-bold text-green-400 code-font">Core Values:</h3>
+                                    <ul className="space-y-2 code-font">
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">> </span> Clean, maintainable code</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Continuous learning</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Performance optimization</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Team collaboration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="bg-code-bg border border-code-border rounded-lg p-6">
+                                <div className="flex items-center space-x-2 mb-4">
+                                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span className="code-font text-code-comment text-sm ml-2">experience.json</span>
+                                </div>
+                                <div className="code-font text-sm space-y-1">
+                                    <div className="text-code-text">&#123;</div>
+                                    <div className="ml-4"><span className="text-code-string">"education"</span>: &#123;</div>
+                                    <div className="ml-8"><span className="text-code-string">"degree"</span>: <span className="text-code-variable">"Computer Engineering"</span>,</div>
+                                    <div className="ml-8"><span className="text-code-string">"university"</span>: <span className="text-code-variable">"Tribhuvan University"</span></div>
+                                    <div className="ml-4">&#125;,</div>
+                                    <div className="ml-4"><span className="text-code-string">"experience"</span>: <span className="text-code-variable">"3+ years"</span>,</div>
+                                    <div className="ml-4"><span className="text-code-string">"focus"</span>: [</div>
+                                    <div className="ml-8"><span className="text-code-variable">"Frontend Development"</span>,</div>
+                                    <div className="ml-8"><span className="text-code-variable">"Machine Learning"</span>,</div>
+                                    <div className="ml-8"><span className="text-code-variable">"Performance Engineering"</span></div>
+                                    <div className="ml-4">],</div>
+                                    <div className="ml-4"><span className="text-code-string">"location"</span>: <span className="text-code-variable">"Chitwan, Nepal"</span></div>
+                                    <div className="text-code-text">&#125;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
   )
 }
 

@@ -1,98 +1,78 @@
-import React, { useContext, useReducer, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import { gsap } from 'gsap/gsap-core'
-import { useGSAP } from '@gsap/react'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 const Navbar = () => {
-  const [Underline, setUnderline1] = useState(false)
-  const [showOption, setShowOption] = useState(false)
-  const imgRef = useRef()
-  useGSAP(() => {
-    gsap.from(imgRef.current, {
-      y: -10,
-      opacity: 0.2,
-      duration: 1.4,
-      repeat: -1,
-      yoyo: true,
-    })
+    const [isOpen, setIsOpen] = useState(false);
 
-  })
-  return (
-    <div>
-      {/* <div className='flex justify-between sm:pt-7 p-1 hidden'>
-        <img src="../src/Images/logo.png" ref={imgRef} className='w-20 scale-[3] ml-15 mt-5 sm:mt-0' />
-        <div className='lg:flex sm:justify-between lg:w-1/3  lg:text-blue-400 lg:text-xl hidden text-xl'> 
-          <div>
-          <NavLink to='/' className='' >
-            <p className='' >Home</p>
-            <hr  className='hidden'/>
-          </NavLink></div>
-          <div>
-          <NavLink to='/About'>
-            <p className=''>About</p>
-            <hr className='hidden'/>
-          </NavLink></div>
-          <div>
-          <NavLink to='/Skills' >
-            <p className=''>Skills</p>
-            <hr className='hidden' />
-          </NavLink></div>
-          <div>
-          <NavLink to='/Contact'>
-            <p className=''>Contact</p>
-            <hr  className='hidden'/>
-          </NavLink></div>
-        </div>
-        <div className='sm:hidden'>
-          <img src="../src/assets/dropdown_icon.png" className='h-5 transform rotate-180 mr-4 mt-5 relative z-50' alt="" onClick={()=>{
-            setShowOption(!showOption);
-          }} />
-        </div>
-        <div   className={showOption? 'w-[100px] h-[200px] absolute z-10 bg-amber-500':'hidden' } ></div>
-      </div> */}
-      <div>
-        <div className={`w-[100vw] h-[100vh] bg-gray-700 absolute  top-0 transition-all duration-700 ease-in-out  z-10 ${showOption ? 'right-0' : '-right-[100vw]'} sm:hidden`}>
-          <div className='p-7'>
-            <img src='../src/assets/dropdown_icon.png' className='w-3 ' onClick={() => {
-              setShowOption(!showOption)
-              console.log('bottom clicked')
-            }} alt="" /></div>
-          <div className=' flex flex-col gap-8 items-center  text-white '>
-            <button className='border-2 rounded-2xl w-1/2'>Home</button>
-            <button className='border-2 rounded-2xl w-1/2'>About</button>
-            <button className='border-2 rounded-2xl w-1/2'>Skills</button>
-            <button className='border-2 rounded-2xl w-1/2'>Contacts</button>
-          </div>
-        </div>
-        <div className=' h-20 overflow-hidden flex justify-between p-5 sm:px-25 sm:p-3 md:px-35 items-center w-[100vw]'>
-          <img src="../src/Images/logo.png" alt="" className='h-15  ' />
-          <div className='flex items-center rotate-180 sm:hidden ' ><img src='../src/assets/dropdown_icon.png' className='w-3' onClick={() => {
-            setShowOption(!showOption)
-            console.log('bottom clicked')
-          }} alt="" />
-          </div>
-          <div className='sm:block hidden  sm:w-105  '><ul className=' flex  justify-between   '>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-          </ul></div>
-        </div>
+    const toggleMenu = () => setIsOpen(!isOpen);
 
-      </div>
+    // Style for desktop links and mobile links
+    const linkStyle = ({ isActive }) => 
+        `transition-colors duration-300 ${isActive ? 'text-green-400' : 'text-[#8b949e] hover:text-green-400'}`;
 
+    const navLinks = [
+        { name: '.home()', path: '/' },
+        { name: '.about()', path: '/about' },
+        { name: '.skills()', path: '/skills' },
+        { name: '.projects()', path: '/projects' },
+        { name: '.contact()', path: '/contact' },
+    ];
 
+    return (
+        <>
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d]">
+                <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                    {/* Logo */}
+                    <NavLink to="/" className="code-font font-bold text-xl text-white">
+                        &lt;<span className="text-green-400">Roshan</span>/&gt;
+                    </NavLink>
 
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex space-x-6 code-font text-sm">
+                        {navLinks.map((link) => (
+                            <NavLink key={link.path} to={link.path} className={linkStyle}>
+                                {link.name}
+                            </NavLink>
+                        ))}
+                    </div>
 
+                    {/* Mobile Hamburger Icon */}
+                    <button 
+                        onClick={toggleMenu}
+                        className="md:hidden text-white focus:outline-none z-[60]"
+                    >
+                        <div className="space-y-1.5">
+                            <span className={`block w-6 h-0.5 bg-green-400 transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 bg-green-400 transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 bg-green-400 transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                        </div>
+                    </button>
+                </div>
+            </nav>
 
+            {/* Overlay (Blur background when menu is open) */}
+            <div 
+                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-[55] transition-opacity duration-300 md:hidden ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                onClick={toggleMenu}
+            ></div>
 
+            {/* Side Navbar (Slides from Right) */}
+            <div className={`fixed top-0 right-0 h-full w-[250px] bg-[#161b22] border-l border-[#30363d] z-[58] transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className="flex flex-col mt-24 px-8 space-y-8 code-font text-lg">
+                    {navLinks.map((link) => (
+                        <NavLink 
+                            key={link.path} 
+                            to={link.path} 
+                            className={linkStyle}
+                            onClick={toggleMenu} // Close menu when a link is clicked
+                        >
+                            {link.name}
+                        </NavLink>
+                    ))}
+                </div>
+            </div>
+        </>
+    );
+};
 
-
-
-
-    </div>
-  )
-}
-
-export default Navbar
-
+export default Navbar;

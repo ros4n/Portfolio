@@ -15,3 +15,66 @@
   --font-mono: "JetBrains Mono", monospace;
   --font-sans: "Inter", sans-serif;
 }
+ * {
+            scrollbar-width: thin;
+            scrollbar-color: #4ade80 #1a1a1a;
+        }
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+        *::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #4ade80;
+            border-radius: 4px;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4ade80, #06d6a0, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .typing-animation::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        /* Apply Inter as the default font for the whole app */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Create a utility class for code-style text */
+.code-font {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Optional: Force all headings to use the clean Inter look */
+h1, h2, h3, h4 {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* Ensure code blocks and pre tags always use JetBrains Mono */
+pre, code {
+    font-family: 'JetBrains Mono', monospace !important;
+}
