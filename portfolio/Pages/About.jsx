@@ -25,10 +25,10 @@ const About = () => {
                                 <div className="space-y-4">
                                     <h3 className="text-xl font-bold text-green-400 code-font">Core Values:</h3>
                                     <ul className="space-y-2 code-font">
-                                        <li className="flex items-center"><span className="text-green-400 mr-2">> </span> Clean, maintainable code</li>
-                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Continuous learning</li>
-                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Performance optimization</li>
-                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Team collaboration</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">&gt;</span> Clean, maintainable code</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">&gt;</span> Continuous learning</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">&gt;</span> Performance optimization</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">&gt;</span> Team collaboration</li>
                                     </ul>
                                 </div>
                             </div>
