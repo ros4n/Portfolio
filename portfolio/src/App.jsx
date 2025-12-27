@@ -1,33 +1,454 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import Navbar from '../Components/Navbar';
-import About from '../Pages/About';
-import { Routes, Route } from 'react-router-dom';
-import Home from '../Pages/Home';
-import Contact from '../Pages/Contact';
-import Skills from '../Pages/Skills';
-import ThreeScene from '../Pages/ThreeScene';
-import Submitted from '../Pages/Submitted';
-const App = () => {
-  const boxRef = useRef();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Rodriguez - Computer Engineer</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #4ade80 #1a1a1a;
+        }
+        *::-webkit-scrollbar {
+            width: 8px;
+        }
+        *::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: #4ade80;
+            border-radius: 4px;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4ade80, #06d6a0, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .typing-animation::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        'code-bg': '#0d1117',
+                        'code-surface': '#161b22',
+                        'code-border': '#30363d',
+                        'code-text': '#f0f6fc',
+                        'code-comment': '#8b949e',
+                        'code-string': '#a5d6ff',
+                        'code-keyword': '#ff7b72',
+                        'code-function': '#d2a8ff',
+                        'code-variable': '#ffa657'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="root"></div>
 
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
+        const Portfolio = () => {
+            const [currentSection, setCurrentSection] = useState('home');
+            const [isTyping, setIsTyping] = useState(true);
 
-  return (
-    <div className="bg-gradient-to-r from-gray-500 to-gray-700 h-[100vh] w-full overflow-hidden font-mont font-bold relative">
+            const codeSnippets = {
+                python: `def solve_problem():
+    # Algorithm implementation
+    result = optimize_solution()
+    return result`,
+                javascript: `const buildAwesome = async () => {
+    const innovation = await create();
+    return innovation.scale();
+};`,
+                cpp: `class Engineer {
+    public:
+        void innovate() {
+            while(true) {
+                code();
+            }
+        }
+};`
+            };
 
-      <div className="">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/submit" element={<Submitted></Submitted>}/>
-        </Routes>
-      </div>
-    </div>
-  );
-};
+            const skills = [
+                { name: 'Python', level: 95, color: '#3776ab' },
+                { name: 'JavaScript', level: 90, color: '#f7df1e' },
+                { name: 'React', level: 88, color: '#61dafb' },
+                { name: 'Node.js', level: 85, color: '#339933' },
+                { name: 'C++', level: 82, color: '#00599c' },
+                { name: 'Machine Learning', level: 80, color: '#ff6f00' },
+                { name: 'AWS', level: 78, color: '#ff9900' },
+                { name: 'Docker', level: 75, color: '#2496ed' }
+            ];
 
-export default App;
+            const projects = [
+                {
+                    title: "AI Code Optimizer",
+                    description: "Machine learning model that optimizes code performance using AST analysis",
+                    tech: ["Python", "TensorFlow", "LLVM"],
+                    github: "#",
+                    demo: "#"
+                },
+                {
+                    title: "Distributed Computing Framework",
+                    description: "High-performance distributed system for large-scale data processing",
+                    tech: ["C++", "MPI", "CUDA"],
+                    github: "#",
+                    demo: "#"
+                },
+                {
+                    title: "Real-time Analytics Dashboard",
+                    description: "WebSocket-based dashboard for monitoring system metrics",
+                    tech: ["React", "Node.js", "D3.js"],
+                    github: "#",
+                    demo: "#"
+                }
+            ];
+
+            useEffect(() => {
+                const timer = setTimeout(() => setIsTyping(false), 3000);
+                return () => clearTimeout(timer);
+            }, []);
+
+            const NavBar = () => (
+                <nav className="fixed top-0 left-0 right-0 z-50 bg-code-bg/95 backdrop-blur-sm border-b border-code-border">
+                    <div className="max-w-6xl mx-auto px-4 py-4">
+                        <div className="flex items-center justify-between">
+                            <div className="code-font text-code-text font-bold text-xl">
+                                &lt;<span className="text-green-400">alex</span>/&gt;
+                            </div>
+                            <div className="hidden md:flex space-x-8 code-font text-sm">
+                                {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
+                                    <button
+                                        key={section}
+                                        onClick={() => setCurrentSection(section)}
+                                        className={`transition-colors hover:text-green-400 ${
+                                            currentSection === section ? 'text-green-400' : 'text-code-comment'
+                                        }`}
+                                    >
+                                        .{section}()
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            );
+
+            const Hero = () => (
+                <section className="min-h-screen flex items-center justify-center bg-code-bg text-code-text">
+                    <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+                        <div className="space-y-6">
+                            <div className="code-font text-code-comment">// Computer Engineer</div>
+                            <h1 className="text-5xl md:text-6xl font-bold">
+                                <span className="text-code-text">Hello, I'm </span>
+                                <span className="gradient-text glitch">Alex</span>
+                            </h1>
+                            <div className="code-font text-xl text-code-comment">
+                                <span className={isTyping ? 'typing-animation' : ''}>
+                                    Building the future, one algorithm at a time
+                                </span>
+                            </div>
+                            <p className="text-lg text-code-comment leading-relaxed">
+                                Passionate computer engineer specializing in distributed systems, 
+                                machine learning, and high-performance computing. I transform 
+                                complex problems into elegant solutions.
+                            </p>
+                            <div className="flex space-x-4">
+                                <button 
+                                    onClick={() => setCurrentSection('projects')}
+                                    className="bg-green-400 text-code-bg px-6 py-3 rounded-lg font-semibold hover:bg-green-300 transition-colors code-font"
+                                >
+                                    view_projects()
+                                </button>
+                                <button 
+                                    onClick={() => setCurrentSection('contact')}
+                                    className="border-2 border-green-400 text-green-400 px-6 py-3 rounded-lg font-semibold hover:bg-green-400/10 transition-colors code-font"
+                                >
+                                    contact_me()
+                                </button>
+                            </div>
+                        </div>
+                        <div className="bg-code-surface border border-code-border rounded-lg p-6">
+                            <div className="flex items-center space-x-2 mb-4">
+                                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span className="code-font text-code-comment text-sm ml-2">engineer.py</span>
+                            </div>
+                            <div className="code-font text-sm space-y-2">
+                                <div><span className="text-code-keyword">class</span> <span className="text-code-function">ComputerEngineer</span>:</div>
+                                <div className="ml-4"><span className="text-code-keyword">def</span> <span className="text-code-function">__init__</span>(self):</div>
+                                <div className="ml-8">self.name = <span className="text-code-string">"Alex Rodriguez"</span></div>
+                                <div className="ml-8">self.role = <span className="text-code-string">"Computer Engineer"</span></div>
+                                <div className="ml-8">self.skills = [<span className="text-code-string">"Python"</span>, <span className="text-code-string">"C++"</span>, <span className="text-code-string">"JS"</span>]</div>
+                                <div className="ml-4"><span className="text-code-keyword">def</span> <span className="text-code-function">solve_problems</span>(self):</div>
+                                <div className="ml-8"><span className="text-code-keyword">return</span> <span className="text-code-string">"Innovative solutions"</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const About = () => (
+                <section className="py-20 bg-code-surface text-code-text">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">
+                            <span className="text-code-comment">// </span>
+                            <span className="gradient-text">About Me</span>
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-12">
+                            <div className="space-y-6">
+                                <p className="text-lg leading-relaxed text-code-comment">
+                                    With 5+ years of experience in computer engineering, I've dedicated my career 
+                                    to pushing the boundaries of what's possible with code. My journey began with 
+                                    curiosity about how computers work, and has evolved into a passion for creating 
+                                    systems that can scale and solve real-world problems.
+                                </p>
+                                <p className="text-lg leading-relaxed text-code-comment">
+                                    I specialize in distributed systems architecture, machine learning algorithms, 
+                                    and performance optimization. When I'm not debugging code at 3 AM, you can 
+                                    find me contributing to open source projects or exploring the latest in 
+                                    quantum computing research.
+                                </p>
+                                <div className="space-y-4">
+                                    <h3 className="text-xl font-bold text-green-400 code-font">Core Values:</h3>
+                                    <ul className="space-y-2 code-font">
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Clean, maintainable code</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Continuous learning</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Performance optimization</li>
+                                        <li className="flex items-center"><span className="text-green-400 mr-2">></span> Team collaboration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="bg-code-bg border border-code-border rounded-lg p-6">
+                                <div className="flex items-center space-x-2 mb-4">
+                                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span className="code-font text-code-comment text-sm ml-2">experience.json</span>
+                                </div>
+                                <div className="code-font text-sm space-y-1">
+                                    <div className="text-code-text">&#123;</div>
+                                    <div className="ml-4"><span className="text-code-string">"education"</span>: &#123;</div>
+                                    <div className="ml-8"><span className="text-code-string">"degree"</span>: <span className="text-code-variable">"MS Computer Engineering"</span>,</div>
+                                    <div className="ml-8"><span className="text-code-string">"university"</span>: <span className="text-code-variable">"Stanford University"</span></div>
+                                    <div className="ml-4">&#125;,</div>
+                                    <div className="ml-4"><span className="text-code-string">"experience"</span>: <span className="text-code-variable">"5+ years"</span>,</div>
+                                    <div className="ml-4"><span className="text-code-string">"focus"</span>: [</div>
+                                    <div className="ml-8"><span className="text-code-variable">"Distributed Systems"</span>,</div>
+                                    <div className="ml-8"><span className="text-code-variable">"Machine Learning"</span>,</div>
+                                    <div className="ml-8"><span className="text-code-variable">"Performance Engineering"</span></div>
+                                    <div className="ml-4">],</div>
+                                    <div className="ml-4"><span className="text-code-string">"location"</span>: <span className="text-code-variable">"San Francisco, CA"</span></div>
+                                    <div className="text-code-text">&#125;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const Skills = () => (
+                <section className="py-20 bg-code-bg text-code-text">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">
+                            <span className="text-code-comment">// </span>
+                            <span className="gradient-text">Technical Skills</span>
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-12">
+                            <div className="space-y-6">
+                                {skills.map((skill, index) => (
+                                    <div key={index} className="space-y-2">
+                                        <div className="flex justify-between items-center">
+                                            <span className="code-font font-semibold">{skill.name}</span>
+                                            <span className="code-font text-sm text-code-comment">{skill.level}%</span>
+                                        </div>
+                                        <div className="w-full bg-code-surface rounded-full h-2">
+                                            <div 
+                                                className="h-2 rounded-full transition-all duration-1000"
+                                                style={{
+                                                    width: `${skill.level}%`,
+                                                    backgroundColor: skill.color
+                                                }}
+                                            ></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="space-y-6">
+                                <div className="bg-code-surface border border-code-border rounded-lg p-6">
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <span className="code-font text-code-comment text-sm ml-2">skills.cpp</span>
+                                    </div>
+                                    <div className="code-font text-sm space-y-1">
+                                        {codeSnippets.cpp.split('\n').map((line, i) => (
+                                            <div key={i} className="text-code-text">{line}</div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="bg-code-surface border border-code-border rounded-lg p-6">
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <span className="code-font text-code-comment text-sm ml-2">innovation.js</span>
+                                    </div>
+                                    <div className="code-font text-sm space-y-1">
+                                        {codeSnippets.javascript.split('\n').map((line, i) => (
+                                            <div key={i} className="text-code-text">{line}</div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const Projects = () => (
+                <section className="py-20 bg-code-surface text-code-text">
+                    <div className="max-w-6xl mx-auto px-4">
+                        <h2 className="text-4xl font-bold mb-12 text-center">
+                            <span className="text-code-comment">// </span>
+                            <span className="gradient-text">Featured Projects</span>
+                        </h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {projects.map((project, index) => (
+                                <div key={index} className="bg-code-bg border border-code-border rounded-lg p-6 hover:border-green-400 transition-colors">
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <span className="code-font text-code-comment text-sm ml-2">project_{index + 1}.md</span>
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-3 text-green-400 code-font">{project.title}</h3>
+                                    <p className="text-code-comment mb-4">{project.description}</p>
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        {project.tech.map((tech, i) => (
+                                            <span key={i} className="bg-code-surface text-green-400 px-2 py-1 rounded text-sm code-font">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <div className="flex space-x-4">
+                                        <a href={project.github} className="text-green-400 hover:text-green-300 code-font text-sm">
+                                            &lt;/github&gt;
+                                        </a>
+                                        <a href={project.demo} className="text-green-400 hover:text-green-300 code-font text-sm">
+                                            &lt;/demo&gt;
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const Contact = () => (
+                <section className="py-20 bg-code-bg text-code-text">
+                    <div className="max-w-4xl mx-auto px-4 text-center">
+                        <h2 className="text-4xl font-bold mb-8">
+                            <span className="text-code-comment">// </span>
+                            <span className="gradient-text">Let's Connect</span>
+                        </h2>
+                        <p className="text-lg text-code-comment mb-12">
+                            Ready to build something amazing together? Let's talk!
+                        </p>
+                        <div className="bg-code-surface border border-code-border rounded-lg p-8 max-w-2xl mx-auto">
+                            <div className="flex items-center space-x-2 mb-6">
+                                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span className="code-font text-code-comment text-sm ml-2">contact.json</span>
+                            </div>
+                            <div className="code-font text-left space-y-2">
+                                <div className="text-code-text">&#123;</div>
+                                <div className="ml-4"><span className="text-code-string">"email"</span>: <span className="text-code-variable">"alex.rodriguez@email.com"</span>,</div>
+                                <div className="ml-4"><span className="text-code-string">"linkedin"</span>: <span className="text-code-variable">"linkedin.com/in/alexrodriguez"</span>,</div>
+                                <div className="ml-4"><span className="text-code-string">"github"</span>: <span className="text-code-variable">"github.com/alexrodriguez"</span>,</div>
+                                <div className="ml-4"><span className="text-code-string">"location"</span>: <span className="text-code-variable">"San Francisco, CA"</span>,</div>
+                                <div className="ml-4"><span className="text-code-string">"status"</span>: <span className="text-code-variable">"Available for opportunities"</span></div>
+                                <div className="text-code-text">&#125;</div>
+                            </div>
+                            <div className="mt-8 space-y-4">
+                                <button className="bg-green-400 text-code-bg px-8 py-3 rounded-lg font-semibold hover:bg-green-300 transition-colors code-font w-full">
+                                    send_email()
+                                </button>
+                                <div className="flex space-x-4 justify-center">
+                                    <a href="#" className="text-green-400 hover:text-green-300 code-font">GitHub</a>
+                                    <a href="#" className="text-green-400 hover:text-green-300 code-font">LinkedIn</a>
+                                    <a href="#" className="text-green-400 hover:text-green-300 code-font">Twitter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+
+            const renderSection = () => {
+                switch(currentSection) {
+                    case 'home': return <Hero />;
+                    case 'about': return <About />;
+                    case 'skills': return <Skills />;
+                    case 'projects': return <Projects />;
+                    case 'contact': return <Contact />;
+                    default: return <Hero />;
+                }
+            };
+
+            return (
+                <div className="min-h-screen bg-code-bg">
+                    <NavBar />
+                    <div className="pt-20">
+                        {renderSection()}
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<Portfolio />, document.getElementById('root'));
+    </script>
+</body>
+</html>
