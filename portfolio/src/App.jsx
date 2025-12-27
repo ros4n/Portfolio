@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from '../components/Navbar.jsx';
-import Hero from '../Pages/Hero.jsx';
-import About from '../Pages/About.jsx';
-import Skills from '../Pages/Skills.jsx';
-import Projects from '../Pages/Projects.jsx';
-import Contact from '../Pages/Contact.jsx';
+import Navbar from './Components/Navbar.jsx';
+import Hero from './Components/Pages/Hero.jsx';
+import About from './Components/Pages/About.jsx';
+import Skills from './Components/Pages/Skills.jsx';
+import Projects from './Components/Pages/Projects.jsx';
+import Contact from './Components/Pages/Contact.jsx';
 
 function App() {
     return (
