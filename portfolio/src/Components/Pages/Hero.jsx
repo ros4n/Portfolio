@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import CommandPrompt from '../CommandPrompt';
 const Hero = () => {
    const [isTyping, setIsTyping] = useState(true);
-  return (
+  return (<>
                 <section className="pt-15 flex items-center justify-center bg-code-bg text-code-text">
                     <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
                         <div className="space-y-6">
@@ -23,16 +25,23 @@ const Hero = () => {
                             </p>
                             <div className="flex space-x-4">
                                 <button 
-                                    onClick={() => setCurrentSection('projects')}
                                     className="bg-green-400 text-code-bg px-6 py-3 rounded-lg font-semibold hover:bg-green-300 transition-colors code-font hover:cursor-pointer"
                                 >
+                                        
+                                    <NavLink to='/projects'>
                                     view_projects()
+                                    </NavLink>
+                                    
                                 </button>
                                 <button 
                                     onClick={() => setCurrentSection('contact')}
                                     className="border-2 border-green-400 text-green-400 px-6 py-3 rounded-lg font-semibold hover:bg-green-400/10 transition-colors code-font hover:cursor-pointer"
                                 >
+                                    <NavLink to={'/contact'}>
+
                                     contact_me()
+                                    </NavLink>
+                                    
                                 </button>
                             </div>
                         </div>
@@ -55,6 +64,8 @@ const Hero = () => {
                         </div>
                     </div>
                 </section>
+                <CommandPrompt/>
+                </>
             );
 }
 

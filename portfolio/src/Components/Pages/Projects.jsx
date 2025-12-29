@@ -26,7 +26,7 @@ import React from 'react'
             ];
 
   return (
-   <section className="py-15 bg-code-surface text-code-text">
+   <section className="py-15 bg-code-bg text-code-text">
                     <div className="max-w-6xl mx-auto px-4">
                         <h2 className="text-4xl font-bold mb-12 text-center">
                             <span className="text-code-comment">// </span>
@@ -34,7 +34,7 @@ import React from 'react'
                         </h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {projects.map((project, index) => (
-                                <div key={index} className="bg-code-bg border border-code-border rounded-lg p-6 hover:border-green-400 transition-colors">
+                                <div key={index} className="bg-code-surface border border-code-border rounded-lg p-6 hover:border-green-400 cursor-pointer transition-colors">
                                     <div className="flex items-center space-x-2 mb-4">
                                         <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                                         <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>

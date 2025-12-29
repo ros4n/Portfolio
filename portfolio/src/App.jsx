@@ -6,6 +6,7 @@ import About from './Components/Pages/About.jsx';
 import Skills from './Components/Pages/Skills.jsx';
 import Projects from './Components/Pages/Projects.jsx';
 import Contact from './Components/Pages/Contact.jsx';
+import CommandPrompt from './Components/CommandPrompt.jsx';
 
 function App() {
     return (
@@ -13,13 +14,15 @@ function App() {
             <Navbar />
             <main className="pt-20"> {/* Padding for fixed navbar */}
                 <Routes>
-                    <Route path="/" element={<Hero />} />
+                    <Route path="/" element={<Hero /> }/>
                     <Route path="/about" element={<About />} />
                     <Route path="/skills" element={<Skills />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
             </main>
+                
+            
         </div>
     );
 }

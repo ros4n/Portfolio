@@ -23,14 +23,14 @@ const Navbar = () => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d]">
                 <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
                     {/* Logo */}
-                    <NavLink to="/" className="code-font font-bold text-xl text-white">
-                        &lt;<span className="text-green-400">Roshan</span>/&gt;
+                    <NavLink to="/" className="code-font font-bold text-xl text-white"  >
+                        &lt;<span className="text-green-400" onClick={()=> window.scrollTo({top:0,behavior:"smooth"})}>Roshan</span>/&gt;
                     </NavLink>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6 code-font text-sm">
                         {navLinks.map((link) => (
-                            <NavLink key={link.path} to={link.path} className={linkStyle}>
+                            <NavLink key={link.path} to={link.path} className={linkStyle} onClick={()=> window.scrollTo({top:0,behavior:"instant"})}>
                                 {link.name}
                             </NavLink>
                         ))}
