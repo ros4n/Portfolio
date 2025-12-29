@@ -5,7 +5,7 @@ import CommandPrompt from '../CommandPrompt';
 const Hero = () => {
    const [isTyping, setIsTyping] = useState(true);
   return (<>
-                <section className="pt-15 flex items-center justify-center bg-code-bg text-code-text">
+                <section className="pt-15 flex items-center justify-center bg-code-bg text-code-text overflow-x-hidden">
                     <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
                         <div className="space-y-6">
                             <div className="code-font text-code-comment">// Computer Engineer</div>
