@@ -29,7 +29,7 @@ const Contact = () => {
                     </div>
                     <div className="mt-8 space-y-4">
                         <a className="bg-green-400 block text-code-bg px-8 py-3 rounded-lg font-semibold hover:bg-green-300 transition-colors code-font w-full cursor-pointer"
-                           href="mailto:yourname@gmail.com?subject=Portfolio%20Contact"
+                           href="mailto:roshanp2196@gmail.com?subject=Portfolio%20Contact"
                         >
                             send_email()
                         </a>
