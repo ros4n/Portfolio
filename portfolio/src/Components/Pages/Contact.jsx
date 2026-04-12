@@ -34,7 +34,7 @@ const Contact = () => {
                             send_email()
                         </a>
                         <div className="flex space-x-4 justify-center">
-                            <a href="#" className="text-green-400 hover:text-green-300 code-font">GitHub</a>
+                            <a href="https://github.com/ros4n" className="text-green-400 hover:text-green-300 code-font">GitHub</a>
                             <a href="#" className="text-green-400 hover:text-green-300 code-font">LinkedIn</a>
                             <a href="#" className="text-green-400 hover:text-green-300 code-font">Twitter</a>
                         </div>
